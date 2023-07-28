@@ -21,6 +21,9 @@ is not recommended as it may interfere with expected server behavior.
 <!-- template name: local.identity.registration.html -->
 
 #set( $messageKeyPrefix = "local.identity.registration." )
+#set($buildingSiteAttributes = ["taxpayerIdentificationNumber", "companyVAT", "company", "companySupervisor", "hasID06Card", "nextOfKinFullname", "nextOfKinRelation", "nextOfKinPhone",  "c", "essDateOfBirth"])
+#set($countryOptions = ["Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua And Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bonaire, Sint Eustatius and Saba", "Bosnia And Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, The Democratic Republic Of The", "Cook Islands", "Costa Rica", "Côte D'Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island And McDonald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran, Islamic Republic Of", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic Of", "Korea, Republic Of", "Kuwait", "Kyrgyzstan", "Lao People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macao", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia, Federated States Of", "Moldova, Republic Of", "Monaco", "Mongolia", "Montenegro, Republic of", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Palestinian territories", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Romania", "Russian Federation", "Rwanda", "Saint Helena", "Saint Kitts And Nevis", "Saint Lucia", "Saint Vincent And The Grenadines", "Saint-Pierre and Miquelon", "Samoa", "San Marino", "Sao Tome And Principe", "Saudi Arabia", "Senegal", "Serbia, Republic of", "Seychelles", "Sierra Leone", "Singapore", "Sint Maarten", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia And The South Sandwich Islands", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard And Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province Of China", "Tajikistan", "Tanzania, United Republic Of", "Thailand", "Timor-Leste", "Togo", "Tokelau", "Tonga", "Trinidad And Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks And Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands, British", "Virgin Islands, U.S.", "Wallis And Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe"])
+
 
 <html lang="$locale.getLanguage()" dir="ltr">
 <head>
@@ -30,6 +33,7 @@ is not recommended as it may interfere with expected server behavior.
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
     <link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>
     #if($captchaEnabled)
         <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     #end
@@ -46,13 +50,77 @@ is not recommended as it may interfere with expected server behavior.
 </div>
 #end
 
+<div id="privacyStatementOverlay">
+    <div id="pablock">
+    <div id="paheader">
+        Privacy agreement
+    </div>
+    <div id="pacontent">
+        <h2 >1.	INTRODUCTION</h2>
+        <p>The European Spallation Source ERIC (ESS) takes the privacy rights of individuals very seriously. ESS complies with personal data laws (GDPR) by keeping your personal data up-to-date, protecting your information from loss, misuse, unauthorised access and disclosure by ensuring appropriate technical measures are in place.</p>
+        <h2>2.	WHAT PERSONAL DATA WILL YOU PROCESS?</h2>
+        <p>For the purposes of registering for an ESS IT system account and basic site access, ESS will obtain and process the following personal data from you:</p>
+        <ul class="privacylist">
+            <li class="privacylist">Full name</li>
+            <li class="privacylist">Contact information</li>
+            <li class="privacylist">Organizational affiliation / employer</li>
+        </ul>
+        <p>For the purpose of registering for access to the ESS construction site, ESS will also obtain and process the additional personal data from you:</p>
+        <ul class="privacylist">
+            <li class="privacylist">Citizenship</li>
+            <li class="privacylist">Date of birth</li>
+            <li class="privacylist">Employment information</li>
+            <li class="privacylist">Next of kin information</li>
+        </ul>
+        <p>ESS may additionally process your online identifiers (e.g. user credentials, IP address) each time you access an ESS IT system.</p>
+        <h2>3.	HOW WILL YOU USE MY INFORMATION?</h2>
+        <p>Your information will be used primarily to provide a system account for access to ESS IT systems and ESS site access. Your information will also be used for account management or work-related communication, to assist you with technical support, and to verify your identity. If you are performing work on the ESS construction site, your information will also be used to verify your right to work in Sweden and to notify your next of kin contacts in the case of an emergency. We reserve the right to use your personal data in order to fulfil legal, contractual, or similar obligations placed upon ESS.</p>
+        <h2>4.	WILL MY PERSONAL DATA BE SENT TO COUNTRIES OUTSIDE THE EEA?</h2>
+        No. ESS will not send your personal information outside the European Economic Area (EEA).</p>
+        <h2>5.	WHY ARE YOU ALLOWED TO USE MY PERSONAL DATA?</h2>
+        <p>ESS needs to collect and use your personal data because such processing is necessary to create IT system accounts and manage site access, and for individuals who may not be subject to a contract, due to legitimate business interests in ensuring only those individuals who are authorised may receive site access or create an IT system account. </p>
+        <p>Additionally, ESS logs online identifiers of users in order to perform its security and technical support function. User activity is logged to ensure the security of ESS IT systems and to detect unauthorised access.</p>
+        <h2>6.	HOW LONG IS MY PERSONAL DATA STORED?</h2>
+        <p>ESS will collect, transfer, categorise, store, add to, and edit your personal information for the period of your work or business relationship, and period of site access validity, plus an additional period of up to 3 years thereafter.</p>
+        <p>If associated with records which have a longer legal or regulatory retention period, your basic identification data (e.g. name, affiliation) will be retained to comply with the legally required retention period of the associated records.</p>
+        <h2>7.	WHAT RIGHTS DO I HAVE?</h2>
+        <p>Unless subject to an exception, you have:</p>
+        <ul class="privacylist">
+            <li class="privacylist">The right to request a copy of your personal data held by ESS;
+            <li class="privacylist">The right to request ESS transmit your personal data to another data controller/entity; </li>
+            <li class="privacylist">The right to request ESS correct any personal data if it is found to be inaccurate or out-of-date; </li>
+            <li class="privacylist">The right to request your personal data be erased when it is no longer necessary for ESS to retain such data; </li>
+            <li class="privacylist">The right to request a restriction on further processing when there is a dispute over the accuracy of personal data stored;</li>
+            <li class="privacylist">The right to lodge a complaint with the Swedish Authority for Privacy Protection (Svensk: Integritetsskyddsmyndigheten - IMY).</li>
+        </ul>
+        <h2>8.	WHO CAN I CONTACT?</h2>
+        <p>You may submit questions or exercise your rights by e-mail to privacy@ess.eu.</p>
+        <h2>9.	WHO ELSE CAN I CONTACT?</h2>
+        <p>If you believe there has been a violation of your personal data protection rights, you may e-mail privacy@ess.eu to discuss a solution.</p>
+        <p>At any time, you have the right to communicate directly with the Swedish Authority for Privacy Protection (Svensk: Integritetsskyddsmyndigheten - IMY) at:</p>
+        
+        Integritetsskyddsmyndigheten (IMY)<br>
+        Box 8114<br>
+        104 20 Stockholm<br>
+        Telefon: 08-657 61 00<br>
+        E-post: imy@imy.se <br>
+      </div> 
+  
+      <div id="pafooter">
+          <a onclick="hidePrivacyStatement()">Close</a>
+     <!--     |
+          <a onclick="rejectPrivacyStatement()">Reject</a> -->
+      </div>
+    </div>
+  </div>
+
 <div class="ping-container ping-signin identity-registration">
     <!--
     if there is a logo present in the 'company-logo' container,
     then 'has-logo' class should be added to 'ping-header' container.
     -->
-    <div class="ping-header">
-        <span class="company-logo"><!-- client company logo here --></span>
+    <div class="ping-header has-logo">
+        <span class="company-logo"><img src="assets/images/esslogo.png"/></span>
         $templateMessages.getMessage($messageKeyPrefix, "title")
     </div>
     <!-- .ping-header -->
@@ -90,7 +158,14 @@ is not recommended as it may interfere with expected server behavior.
 
                         <div>
                             #foreach ($field in $fields)
+                                
                                 #set( $fieldId = $field.getData().getId() )
+                                #if( $buildingSiteAttributes.contains($fieldId))
+                                    #set( $fieldStyle = ' style="display: none;" ' )
+                                #else
+                                    #set( $fieldStyle = "" )
+                                #end
+                                
                                 #set( $escapedFieldId = $escape.escape($fieldId) )
                                 #set( $fieldValue = $escape.escape($populateValues.get($fieldId)) )
                                 #set( $required = "" )
@@ -119,19 +194,25 @@ is not recommended as it may interfere with expected server behavior.
                                         #set( $required = "" )
                                     #end
                                 #end
+                                #if($fieldId == "needBuildingSiteAccess")
+                                    #set($onChangeJS = ';changeRequired(this)')
+                                #else
+                                    #set( $onChangeJS = "" )
+                                #end
+
                                 #if( $field.getName() == "Date" )
-                                    <div class="ping-input-label input-label ">
+                                    <div class="ping-input-label input-label " id="label-$escapedFieldId" $fieldStyle>
                                         $templateMessages.getMessageWithDefault($messageKeyPrefix, "$fieldId", "$field.getData().getLabel()")
                                     </div>
-                                    <div class="ping-input-container $required" id="container-$escapedFieldId">
+                                    <div class="ping-input-container $required" id="container-$escapedFieldId" $fieldStyle>
                                         <input class="$required $validateRequired" id="$escapedFieldId" autocomplete="user-date" type="date" name="$escapedFieldId" value="$fieldValue" placeholder="yyyy-mm-dd" onkeyup="return postOnReturn(event)" $fieldDisabled/>
                                     </div>
 
                                 #elseif( $field.getName() == "Text" )
-                                    <div class="ping-input-label">
+                                    <div class="ping-input-label" id="label-$escapedFieldId" $fieldStyle > 
                                         $templateMessages.getMessageWithDefault($messageKeyPrefix, "$fieldId", "$field.getData().getLabel()")
                                     </div>
-                                    <div class="ping-input-container $required" id="container-$escapedFieldId">
+                                    <div class="ping-input-container $required" id="container-$escapedFieldId" $fieldStyle>
                                         <input class="$required $validateRequired" id="$escapedFieldId" autocomplete="user-text" type="text" name="$escapedFieldId" value="$fieldValue" onkeyup="return postOnReturn(event)" $fieldDisabled/>
                                     </div>
 
@@ -140,24 +221,60 @@ is not recommended as it may interfere with expected server behavior.
                                         <span class="icon-alert"></span>
                                         $templateMessages.getMessage($messageKeyPrefix, "missingCheckbox")
                                     </div>
-                                    <label class="ping-input-container">
-                                        <div class="ping-checkbox-container stacked $required" id="container-$escapedFieldId">
-                                            #if( $fieldValue.equalsIgnoreCase("true") || $fieldValue.equalsIgnoreCase("on") )
-                                                <input class="$required" id="$escapedFieldId" type="checkbox" name="$escapedFieldId" checked $fieldDisabled/>
-                                            #else
-                                                <input class="$required" id="$escapedFieldId" type="checkbox" name="$escapedFieldId" onchange="hideCheckboxRequired(this)" $fieldDisabled/>
-                                            #end
-                                            $templateMessages.getMessageWithDefault($messageKeyPrefix, "$fieldId", "$field.getData().getLabel()")
-                                            <div class="icon"></div>
-                                        </div>
-                                    </label>
+
+                             	    #if( $fieldId == "privacystatememt")
+                                    <table>  
+                                       <tr> 
+                                         <td width="2" style="white-space:nowrap;"> 
+                                        <label class="ping-input-container" id="container-$escapedFieldId" style="display:inline !important;">
+                                            <div class="ping-checkbox-container stacked $required" id="container-$escapedFieldId">
+                                                #if( $fieldValue.equalsIgnoreCase("true") || $fieldValue.equalsIgnoreCase("on") )
+                                                    <input class="$required" id="$escapedFieldId" type="checkbox" name="$escapedFieldId" checked $fieldDisabled/>
+                                                #else
+                                                    <input class="$required" id="$escapedFieldId" type="checkbox" name="$escapedFieldId" onchange="hideCheckboxRequired(this)$onChangeJS" $fieldDisabled/>
+                                                #end
+						  $templateMessages.getMessageWithDefault($messageKeyPrefix, "$fieldId", "$field.getData().getLabel()")
+                                          <!--      I agree to -->
+                                                <div class="icon"></div>
+                                            </div>                         
+                                        </label>
+                                    </td>  
+                                    <td style="text-align: left;"> 
+                                        <div class="ping-input-container" style="margin-top:2px;margin-left:3px;"> 
+                                            <a onclick="showPrivacyStatement()" id="privacyStamentLink">Privacy Statement</a> 
+                                        </div> 
+                                    
+                                    </td>  
+                                    </tr>  
+                                    </table> 
+                                        
+
+                                    
+                                    
+                                #else
+                                        <label class="ping-input-container" id="container-$escapedFieldId" $fieldStyle>
+                                            <div class="ping-checkbox-container stacked $required" id="container-$escapedFieldId">
+                                                #if( $fieldValue.equalsIgnoreCase("true") || $fieldValue.equalsIgnoreCase("on") )
+                                                    <input class="$required" id="$escapedFieldId" type="checkbox" name="$escapedFieldId" checked $fieldDisabled/>
+                                                #else
+                                                    <input class="$required" id="$escapedFieldId" type="checkbox" name="$escapedFieldId" onchange="hideCheckboxRequired(this)$onChangeJS" $fieldDisabled/>
+                                                #end
+                                                $templateMessages.getMessageWithDefault($messageKeyPrefix, "$fieldId", "$field.getData().getLabel()")
+
+                                                <div class="icon"></div>
+                                            </div>
+                                        </label>
+                                        
+                                    #end
+
+                                    
 
                                 #elseif( $field.getName() == "Checkbox Group" )
                                     <div class="error-text ping-alert" id="required-$escapedFieldId">
                                         <span class="icon-alert"></span>
                                         $templateMessages.getMessage($messageKeyPrefix, "missingCheckboxGroup")
                                     </div>
-                                    <div class="ping-input-label detached">
+                                    <div class="ping-input-label detached" > 
                                         $templateMessages.getMessageWithDefault($messageKeyPrefix, "$fieldId", "$field.getData().getLabel()")
                                     </div>
                                     #foreach( $option in $field.getData().getOptions() )
@@ -176,37 +293,49 @@ is not recommended as it may interfere with expected server behavior.
                                 <br/>
 
                                 #elseif( $field.getName() == "Email" )
-                                    <div class="ping-input-label">
+                                    <div class="ping-input-label" id="label-$escapedFieldId" $fieldStyle> 
                                         $templateMessages.getMessageWithDefault($messageKeyPrefix, "$fieldId", "$field.getData().getLabel()")
                                     </div>
-                                    <div class="ping-input-container $required" id="container-$escapedFieldId">
+                                    <div class="ping-input-container $required" id="container-$escapedFieldId" $fieldStyle>
                                         <input class="$required $validateRequired" id="$escapedFieldId" autocomplete="user-email" type="email" name="$escapedFieldId" value="$fieldValue" size="36" onkeyup="return postOnReturn(event)" $fieldDisabled/>
                                     </div>
 
                                 #elseif( $field.getName() == "Phone" )
-                                    <div class="ping-input-label">
+                                    <div class="ping-input-label" id="label-$escapedFieldId" $fieldStyle>
                                         $templateMessages.getMessageWithDefault($messageKeyPrefix, "$fieldId", "$field.getData().getLabel()")
                                     </div>
-                                    <div class="ping-input-container $required" id="container-$escapedFieldId">
+                                    <div class="ping-input-container $required" id="container-$escapedFieldId" $fieldStyle>
                                         <input class="$required $validateRequired" id="$escapedFieldId" autocomplete="user-phone" type="tel"  name="$escapedFieldId" value="$fieldValue" size="36" onkeyup="return postOnReturn(event)" $fieldDisabled/>
                                     </div>
 
                                 #elseif( $field.getName() == "Dropdown" )
-                                    <span class="ping-input-label detached">
+                                    <span class="ping-input-label detached" id="span-$escapedFieldId" $fieldStyle>
                                         $templateMessages.getMessageWithDefault($messageKeyPrefix, "$fieldId", "$field.getData().getLabel()")
                                     </span>
-                                    <label class="input-select ping-input-container $required" id="container-$escapedFieldId">
+                                    <label class="input-select ping-input-container $required" id="container-$escapedFieldId" $fieldStyle>
                                         <div class="input-container">
                                             <div class="wrapper">
                                                 <select id="$escapedFieldId" name="$escapedFieldId" class="$required $validateRequired" onkeyup="return postOnReturn(event)" $fieldDisabled>
                                                     #if($field.getData().getDefaultValue().equals(""))
                                                         <option selected $disabledSelect value="">$templateMessages.getMessage($messageKeyPrefix, "dropDownDefault")</option>
                                                     #end
-                                                    #foreach( $option in $field.getData().getOptions() )
-                                                        #if( $option.equals($fieldValue)) )
-                                                            <option selected value="$option">$option</option>
-                                                        #else
-                                                            <option value="$option">$option</option>
+
+                                                    #if($fieldId == "c")
+                                                        #foreach( $option in $countryOptions )
+                                                            #if( $option.equals($fieldValue)) )
+                                                                <option selected value="$option">$option</option>
+                                                            #else
+                                                                <option value="$option">$option</option>
+                                                            #end
+                                                        #end
+                                                    #else
+
+                                                        #foreach( $option in $field.getData().getOptions() )
+                                                            #if( $option.equals($fieldValue)) )
+                                                                <option selected value="$option">$option</option>
+                                                            #else
+                                                                <option value="$option">$option</option>
+                                                            #end
                                                         #end
                                                     #end
                                                 </select>
@@ -222,10 +351,14 @@ is not recommended as it may interfere with expected server behavior.
                         #set( $passwordRequirementTwo =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementTwo", "") )
                         #set( $passwordRequirementThree =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementThree", "") )
                         #set( $passwordRequirementFour =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementFour", "") )
+			#set( $passwordRequirementFive =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementFive", "") )
+			#set( $passwordRequirementSix =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementSix", "") )
                             #if( $passwordRequirementOne && $passwordRequirementOne.trim() != "" ||
                                     $passwordRequirementTwo && $passwordRequirementTwo.trim() != "" ||
                                     $passwordRequirementThree && $passwordRequirementThree.trim() != "" ||
-                                    $passwordRequirementFour && $passwordRequirementFour.trim() != "")
+                                    $passwordRequirementFour && $passwordRequirementFour.trim() != "" ||
+                                    $passwordRequirementFive && $passwordRequirementFive.trim() != "" ||
+                                    $passwordRequirementSix && $passwordRequirementSix.trim() != "")
                                 #set( $isShowPasswordRequirements = true )
                             #else
                                 #set( $isShowPasswordRequirements = false )
@@ -259,6 +392,16 @@ is not recommended as it may interfere with expected server behavior.
                                     #if( $passwordRequirementFour && $passwordRequirementFour.trim() != "" )
                                     <div>
                                         $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementFour")
+                                    </div>
+                                    #end
+				    #if( $passwordRequirementFive && $passwordRequirementFive.trim() != "" )
+                                    <div>
+                                        $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementFive")
+                                    </div>
+                                    #end
+				    #if( $passwordRequirementSix && $passwordRequirementSix.trim() != "" )
+                                    <div>
+                                        $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementSix")
                                     </div>
                                     #end
                                 </div>
@@ -304,6 +447,9 @@ is not recommended as it may interfere with expected server behavior.
                             <a href="javascript:void(0)" onclick="postCancel();" class="ping-button blue deny" title="$templateMessages.getMessage($messageKeyPrefix, "cancelButtonTitle")">
                             $templateMessages.getMessage($messageKeyPrefix, "cancelButtonTitle")
                             </a>
+
+                            <a onclick="showPrivacyStatement()" id="privacyStamentLink">privacy statement</a>
+
                         </div>
 
                         <div class="account-actions ping-register">
@@ -356,7 +502,6 @@ is not recommended as it may interfere with expected server behavior.
 
     <div class="ping-footer-container">
         <div class="ping-footer">
-            <div class="ping-credits"></div>
             <div class="ping-copyright">$templateMessages.getMessage("global.footerMessage")</div>
         </div>
         <!-- .ping-footer -->
@@ -366,6 +511,12 @@ is not recommended as it may interfere with expected server behavior.
 </div><!-- .ping-container -->
 
 <script type="text/javascript">
+
+    // CUSTOM JAVASCRIPT
+    function isBuildingSiteAttribute(field)
+    {
+        return buildingSiteAttributes.includes(field.id)
+    }
 
     function showHideRequirements() {
         var tips = document.getElementById('password-requirements');
@@ -405,17 +556,23 @@ is not recommended as it may interfere with expected server behavior.
     }
 
     function postOk() {
+        console.log("postOK start");
         if (!requiredFieldsMissing()) {
+            console.log("  postOK: no fields missing");
             if ($captchaEnabled) {
+                console.log(" postOK: captcha enabled");
                 grecaptcha.execute();
             }
             else {
+                console.log(" postOK: captcha not enabled");
                 // run browser validation
                 if(document.forms[0].checkValidity && !document.forms[0].checkValidity() && document.forms[0].reportValidity) {
                     document.forms[0].reportValidity();
                     return false;
                 }
+                console.log(" postOK: starting submit");
                 submitForm();
+                console.log(" postOK: submit done");
             }
         }
     }
@@ -509,6 +666,85 @@ is not recommended as it may interfere with expected server behavior.
     function showRequiredDisplay(field) {
         var container = document.getElementById("container-" + field.id);
         container.classList.add("required");
+    }
+
+    // CUSTOM JAVASCRIPT
+    function changeRequired(sender) {
+        buildingSiteAttributes.forEach( element => {
+            field = document.getElementById(element);
+            fieldContainer = document.getElementById("container-" + element);
+            //fieldcheckBox = document.getElementById("required-" + element);
+            fieldLabel = document.getElementById("label-" + element);
+            fieldSpan = document.getElementById("span-" + element);
+            console.log("handling " + element);
+
+            if (sender.checked) {
+                if (field !== null) {
+                    field.style.display = "inline-block";
+                    if (field.type != "checkbox") {
+                        makeRequired(field);
+                        showRequiredDisplay(field);    
+                    }
+                }
+
+                if (fieldContainer !== null) {
+                    fieldContainer.style.display = "inline-block";
+                }
+
+                if (fieldLabel !== null) {
+                    fieldLabel.style.display = "inline-block";
+                }
+
+                /*
+                if (fieldcheckBox !== null) {
+                    fieldcheckBox.style.display = "inline-block";
+                }
+                */
+
+                if (fieldSpan !== null) {
+                    fieldSpan.style.display = "inline-block";
+                }
+            } else {
+                if (field !== null) {
+                    field.style.display = "none";
+                    if (field.type != "checkbox") {
+                        removeRequired(field);
+                        removeRequiredDisplay(field);
+                    }
+                }
+
+                if (fieldContainer !== null) {
+                    fieldContainer.style.display = "none";
+                }
+
+                if (fieldLabel !== null) {
+                    fieldLabel.style.display = "none";
+                }
+
+                /*
+                if (fieldcheckBox !== null) {
+                    fieldcheckBox.style.display = "none";
+                }
+                */
+
+                if (fieldSpan !== null) {
+                    fieldSpan.style.display = "none";
+                }
+            }
+
+        });
+    } 
+
+    // CUSTOM JAVASCRIPT
+    function makeRequired(field) {
+        var container = document.getElementById("" + field.id);
+        container.classList.add("required");
+    }
+
+    // CUSTOM JAVASCRIPT
+    function removeRequired(field) {
+        var container = document.getElementById(field.id);
+        container.classList.remove("required");
     }
 
     function removeRequiredDisplay(field) {
@@ -650,6 +886,34 @@ is not recommended as it may interfere with expected server behavior.
         // set first field focus
         setFocus();
     });
+
+
+    //CUSTOM JAVASCRIPT
+    var buildingSiteAttributes = ["taxpayerIdentificationNumber", "companyVAT", "company", "companySupervisor", "hasID06Card", "nextOfKinFullname", "nextOfKinRelation", "nextOfKinPhone",  "c", "essDateOfBirth"]
+
+    function showPrivacyStatement() {
+     document.getElementById("privacyStatementOverlay").style.display = "block";
+    }
+
+    function hidePrivacyStatement() {
+       document.getElementById("privacyStatementOverlay").style.display = "none";
+    }
+
+//    function acceptPrivacyStatement() {
+//        var chkBox = document.getElementById("privacystatement")
+//        console.log("privacy statement before: " + chkBox.checked)
+//        chkBox.checked = true;
+//        console.log("privacy statement after: " + chkBox.checked)
+//        hidePrivacyStatement();
+//    }
+
+//    function rejectPrivacyStatement() {
+//        var chkBox =  document.getElementById("privacystatement")
+//        console.log("privacy statement before: " + chkBox.checked)
+//        chkBox.checked = false;
+//        console.log("privacy statement after: " + chkBox.checked)
+//        hidePrivacyStatement();
+//    }
 
 </script>
 </body>
