@@ -32,43 +32,15 @@ is not recommended as it may interfere with expected server behavior.
         content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
     <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/ror.css" />
+    <script src='assets/scripts/ror.js'></script>
+
     #if($captchaEnabled)
     <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     #end
     <style>
         .ping-container {
             background-image: none;
-        }
-
-        .dropdown-list {
-            box-shadow: 0 2px 4px -1px #0003, 0 4px 5px #00000024,
-                0 1px 10px #0000001f;
-            overflow: auto;
-            max-height: 150px;
-        }
-
-        .dropdown-list-item {
-            padding: 5px;
-            cursor: pointer;
-            text-align: left;
-        }
-
-        .dropdown-list-item:hover {
-            background-color: #ddd;
-        }
-
-        .unidentified-affilitation {
-            position: relative;
-        }
-
-        .unidentified-affilitation::after {
-            content: "Unidentified organization";
-            position: absolute;
-            text-transform: none;
-            top: 100%;
-            right: 0;
-            margin-top: 5px;
-            color: gray;
         }
     </style>
 </head>
@@ -718,121 +690,6 @@ is not recommended as it may interfere with expected server behavior.
         setFocus();
     });
 
-    var inputAffiliation = document.querySelector('input[name="affiliation"]');
-    var inputAffiliationContainer = document.querySelector('#container-affiliation');
-    var inputCountry = document.querySelector('select[name="affiliationCountry"]');
-    var inputAffiliationId = document.querySelector('input[name="rorID"]');
-
-    // For the Affiliation field
-    var timeoutId;
-    var searchInput = document.querySelector('input[name="affiliation"]');
-    searchInput.addEventListener("keyup", debounce(searchDropdown, 500));
-    searchInput.addEventListener("focus", handleSearchInputFocus)
-
-    //Add searchResults after searchInput
-    var searchResults = document.createElement("div");
-    searchResults.className = "dropdown-list";
-    searchResults.id = "searchResults";
-
-    searchInput.parentNode.insertBefore(
-        searchResults,
-        searchInput.nextSibling
-    );
-
-    // TODO add country before input element
-    function createListItem(text, parent) {
-        var listItem = document.createElement("div");
-        listItem.classList.add("dropdown-list-item");
-        listItem.innerText = text;
-        parent.appendChild(listItem);
-
-        return listItem;
-    }
-
-    function handleItemClick(item) {
-        inputAffiliation.value = item.organization.name;
-        inputCountry.value = item.organization.country.country_name
-        inputAffiliationId.value = item.organization.id
-        inputAffiliationContainer.classList.remove("unidentified-affilitation")
-        searchResults.innerHTML = "";
-    }
-
-    function searchDropdown() {
-
-        var query = inputAffiliation.value;
-        var searchResults = document.getElementById("searchResults");
-
-        // Clear previous search results
-        searchResults.innerHTML = "";
-
-        if (query.length >= 3) {
-            // Construct the API URL with the query and country code
-            var apiUrl =
-                "https://ror.useroffice.ess.eu/organizations?affiliation=" +
-                encodeURIComponent(query);
-            var setResults = function (elem) {
-                inputAffiliation.value = elem.srcElement.innerHTML;
-
-            };
-            // Make API request
-            fetch(apiUrl)
-                .then((response) => response.json())
-                .then((data) => {
-                    // Process the API response and populate the dropdown list
-
-                    if (data.items != 0) {
-                        const exactMatch = data.items.find(obj => obj.organization.name.toLowerCase() === inputAffiliation.value.toLowerCase());
-                        if (exactMatch) {
-                            handleItemClick(exactMatch);
-                            return;
-                        }
-                        data.items.forEach((item) => {
-                            var itemDiv = createListItem(
-                                item.organization.name,
-                                searchResults
-                            );
-                            itemDiv.onclick = () => handleItemClick(item)
-                        });
-                    } else {
-                        createListItem("No results found", searchResults);
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching data from the API:", error);
-                });
-        }
-    }
-
-    function debounce(func, delay) {
-        return function () {
-            inputAffiliationId.value = ""
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(func, delay);
-        };
-    }
-
-    document.addEventListener("click", function (event) {
-        var target = event.target;
-        var searchInput = document.querySelector('input[name="affiliation"]');
-        var searchResults = document.getElementById("searchResults");
-
-        if (target !== searchInput && target !== searchResults) {
-            searchResults.innerHTML = "";
-
-            if (inputAffiliationId.value === "") {
-                inputAffiliationContainer.classList.add("unidentified-affilitation")
-            }
-            else {
-                inputAffiliationContainer.classList.remove("unidentified-affilitation")
-            }
-        }
-
-
-    });
-
-    function handleSearchInputFocus() {
-        inputAffiliationContainer.classList.remove("unidentified-affilitation")
-    }
 
 
 
