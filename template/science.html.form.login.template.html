@@ -50,6 +50,10 @@ is not recommended as it may interfere with expected server behavior.
     #if($captchaEnabled)
         <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     #end
+    <script>
+        /*to prevent FOUC, this must be here*/
+        let FOUC_FIX;
+    </script>
 </head>
 
 <body onload="setFocus();isWebAuthnPlatformAuthenticatorAvailable();">

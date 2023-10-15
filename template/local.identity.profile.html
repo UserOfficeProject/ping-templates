@@ -31,6 +31,7 @@ is not recommended as it may interfere with expected server behavior.
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
     <link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/profile.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/ror.css" />
     <script src='assets/scripts/ror.js'></script>
 </head>
@@ -331,7 +332,7 @@ is not recommended as it may interfere with expected server behavior.
                 </div>
                 <!-- end section 1 -->
 
-                #if($socialConnections.size() > 0)
+                <!-- #if($socialConnections.size() > 0)
                     <div class="content-columns columns-2">
                         <div class="content-column no-border">
                             <div class="section">
@@ -387,10 +388,10 @@ is not recommended as it may interfere with expected server behavior.
                                 </div>
                             </div>
                         </div>
-                #end
+                #end-->
                 <!-- end social connections section -->
 
-                <div class="content-column">
+                <!--<div class="content-column">
                     <div class="section">
                         <div class="section-title">
                             $templateMessages.getMessage($messageKeyPrefix, "accountSettingsTitle")
@@ -509,11 +510,11 @@ is not recommended as it may interfere with expected server behavior.
                                         </div>
                                     </div>
                                 </span>
-                        </div>
+                        </div>-->
                         <!-- your-account-container -->
                         #end
 
-                        #if(!$hasLocalIdentity)
+                        <!--#if(!$hasLocalIdentity)
                         <div class="your-account-container">
                             <input type="hidden" name="$setpass" value=""/>
                             ##Pop up the tooltip if there is an error message to show.
@@ -620,9 +621,9 @@ is not recommended as it may interfere with expected server behavior.
                                     </div>
                                 </span>
                         </div>
-                        #end
+                        #end-->
 
-                        #if($displayDelete)
+                        <!--#if($displayDelete)
                         <div class="your-account-container">
 
                             #if($socialConnections.size() > 0)
@@ -655,14 +656,14 @@ is not recommended as it may interfere with expected server behavior.
                                         </div>
                                     </div>
                                 </span>
-                        </div>
+                        </div>-->
                         #end
                         <!-- end display-delete -->
-                    </div>
+                   <!-- </div>
 
                 </div>
                 #if($socialConnections.size() > 0)
-            </div>
+            </div> -->
             #end
         </div>
         <!-- sections -->

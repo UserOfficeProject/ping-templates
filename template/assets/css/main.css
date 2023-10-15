@@ -4054,6 +4054,7 @@ body .ping-signin .ping-subtitle, body .ping-password .ping-subtitle {
   line-height: 1.3em;
   padding: 10px 0;
 }
+
 body .ping-signin .ping-body-container, body .ping-password .ping-body-container {
   max-width: 800px;
   padding-bottom: 40px;
@@ -4219,7 +4220,6 @@ body.columns-layout .ping-signin .ping-header {
   display: none;
 }
 body.columns-layout .ping-signin .ping-body-container {
-  transition: all 200ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
   max-width: 790px;
   padding: 60px 50px 50px;
 }
