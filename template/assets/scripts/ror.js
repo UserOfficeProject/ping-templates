@@ -48,16 +48,16 @@ function createListItem(text, parent) {
 }
 
 function handleItemClick(item) {
-    inputAffiliation.value = item.organization.name;
-    inputCountry.value = item.organization.country.country_name
-    inputAffiliationId.value = item.organization.id
+    inputAffiliation.value = item.name;
+    inputCountry.value = item.country.country_name
+    inputAffiliationId.value = item.id
     inputAffiliationContainer.classList.remove("unidentified-affilitation")
     searchResults.innerHTML = "";
 }
 
 function searchDropdown() {
 
-    var query = inputAffiliation.value;
+    var query = `${inputAffiliation.value}*`; // adding * for wildcard
     var searchResults = document.getElementById("searchResults");
 
     // Clear previous search results
@@ -66,7 +66,7 @@ function searchDropdown() {
     if (query.length >= 3) {
         // Construct the API URL with the query and country code
         var apiUrl =
-            "https://ror.useroffice.ess.eu/organizations?affiliation=" +
+            "https://ror.useroffice.ess.eu/organizations?query=" +
             encodeURIComponent(query);
         var setResults = function (elem) {
             inputAffiliation.value = elem.srcElement.innerHTML;
@@ -79,14 +79,14 @@ function searchDropdown() {
                 // Process the API response and populate the dropdown list
 
                 if (data.items != 0) {
-                    const exactMatch = data.items.find(obj => obj.organization.name.toLowerCase() === inputAffiliation.value.toLowerCase());
+                    const exactMatch = data.items.find(obj => obj.name.toLowerCase() === inputAffiliation.value.toLowerCase());
                     if (exactMatch) {
                         handleItemClick(exactMatch);
                         return;
                     }
                     data.items.forEach((item) => {
                         var itemDiv = createListItem(
-                            item.organization.name,
+                            item.name,
                             searchResults
                         );
                         itemDiv.onclick = () => handleItemClick(item)

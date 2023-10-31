@@ -38,11 +38,6 @@
         #if($captchaEnabled)
         <script src='https://www.google.com/recaptcha/api.js' async defer></script>
         #end
-        <style>
-            .ping-container {
-                background-image: none;
-            }
-        </style>
     </head>
 
 
@@ -481,6 +476,8 @@
                     foundMissingField = isCheckBoxFieldMissing(field) || foundMissingField;
                 else if (field.tagName === 'SELECT')
                     foundMissingField = isSelectFieldMissing(field) || foundMissingField;
+                else if (field.name === 'mail')
+                    foundMissingField = isEmailFieldMissing(field) || foundMissingField;
                 else
                     foundMissingField = isStandardFieldMissing(field) || foundMissingField;
             }
@@ -526,6 +523,18 @@
                 showErrorDisplay(field);
                 return true;
             }
+            return false;
+        }
+
+        function isEmailFieldMissing(field) {
+            // Regular expression to match a valid email format
+            var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        
+            if (!emailRegex.test(field.value)) {
+                showErrorDisplay(field);
+                return true;
+            }
+        
             return false;
         }
 
