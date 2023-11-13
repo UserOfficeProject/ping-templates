@@ -1351,9 +1351,8 @@ label .inline-confirmation .icon-approve,
   display: inline-block;
   position: absolute;
   font-size: 9px;
-  top: 15px;
-  right: auto;
-  left: 289px;
+  top: 17px;
+  right: 10px;
   padding: 0;
   height: 21px;
   width: 21px;
@@ -5976,8 +5975,7 @@ ul.no-bullets li:before {
   }
 
   .ping-input-container .inline-confirmation .icon-approve {
-    right: auto;
-    left: 289px;
+    right: 10px;
   }
 
   .ping-tabular .button.inline {
@@ -6256,9 +6254,6 @@ ul.no-bullets li:before {
   }
 }
 @media (max-width: 420px), (max-device-width: 420px) {
-  .ping-input-container .inline-confirmation .icon-approve {
-    left: 269px;
-  }
   .ping-input-container .inline-confirmation .confirmation-text {
     left: 145px;
   }
@@ -6273,9 +6268,6 @@ ul.no-bullets li:before {
   }
 }
 @media (max-width: 390px), (max-device-width: 390px) {
-  .ping-input-container .inline-confirmation .icon-approve {
-    left: 239px;
-  }
   .ping-input-container .inline-confirmation .confirmation-text {
     left: 115px;
   }
