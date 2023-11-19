@@ -33,7 +33,9 @@ is not recommended as it may interfere with expected server behavior.
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/profile.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/ror.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/registration-help.css" />
     <script src='assets/scripts/ror.js'></script>
+    <script src='assets/scripts/registration-help.js'></script>
 </head>
 
 <div id="privacyStatementOverlay">
@@ -682,7 +684,14 @@ is not recommended as it may interfere with expected server behavior.
             <a onclick="postSave();" class="ping-button normal allow" title='$templateMessages.getMessage($messageKeyPrefix, "saveButtonTitle")'>
                 $templateMessages.getMessage($messageKeyPrefix, "saveButtonTitle")
             </a>
-	   <a onclick="showPrivacyStatement()" id="privacyStamentLink">Privacy Statement</a>
+            <div>
+	            <a onclick="showPrivacyStatement()" id="privacyStamentLink">Privacy Statement</a>
+            </div>
+            <div>
+            <a href="javascript:void(0)" onclick="showHelp();" title="Help">
+                    Help
+                </a>
+            </div>
         </div>
 
         </form>

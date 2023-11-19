@@ -47,6 +47,7 @@ is not recommended as it may interfere with expected server behavior.
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
     <link rel="stylesheet" type="text/css" href="assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/registration-help.css" />
     #if($captchaEnabled)
         <script src='https://www.google.com/recaptcha/api.js' async defer></script>
     #end
@@ -54,6 +55,8 @@ is not recommended as it may interfere with expected server behavior.
         /*to prevent FOUC, this must be here*/
         let FOUC_FIX;
     </script>
+    <script src='assets/scripts/registration-help.js'></script>
+
 </head>
 
 <body onload="setFocus();isWebAuthnPlatformAuthenticatorAvailable();">
@@ -233,6 +236,13 @@ is not recommended as it may interfere with expected server behavior.
 
                 <input type="hidden" name="$adapterIdField" id="$adapterIdField" value="$adapterId" />
             </form>
+            <div>
+                Problems signing up?
+                <a href="javascript:void(0)" onclick="showHelp();"
+                    title="Help">
+                    Help
+                </a>
+            </div>
         </div><!-- .ping-body// blank div -->
         
     </div><!-- .ping-body-container -->

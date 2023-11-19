@@ -33,7 +33,9 @@
         <meta http-equiv="x-ua-compatible" content="IE=edge" />
         <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
         <link rel="stylesheet" type="text/css" href="assets/css/ror.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/registration-help.css" />
         <script src='assets/scripts/ror.js'></script>
+        <script src='assets/scripts/registration-help.js'></script>
 
         #if($captchaEnabled)
         <script src='https://www.google.com/recaptcha/api.js' async defer></script>
@@ -344,11 +346,20 @@
                             </div>
 
                             <div class="account-actions ping-register">
+                                <div style="margin-bottom: 10px;">
                                 $templateMessages.getMessage($messageKeyPrefix, "accountAlreadyCreated")
                                 <a href="javascript:void(0)" onclick="postSignOn();"
                                     title="$templateMessages.getMessage($messageKeyPrefix, " login")">
                                     $templateMessages.getMessage($messageKeyPrefix, "login")
                                 </a>
+                                </div>
+                                <div>
+                                    Problems signing in?
+                                    <a href="javascript:void(0)" onclick="showHelp();"
+                                        title="Help">
+                                        Help
+                                    </a>
+                                </div>
                             </div>
 
                             #if($altAuthSources.size() > 0 && $isLocalRegistration)
