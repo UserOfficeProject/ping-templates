@@ -246,7 +246,7 @@
                                 #end
                             </div>
 
-                            #if(true)
+                            
                             #set( $passwordRequirementOne = $templateMessages.getMessageWithDefault($messageKeyPrefix,
                             "passwordRequirementOne", "") )
                             #set( $passwordRequirementTwo = $templateMessages.getMessageWithDefault($messageKeyPrefix,
@@ -256,15 +256,15 @@
                             #set( $passwordRequirementFour = $templateMessages.getMessageWithDefault($messageKeyPrefix,
                             "passwordRequirementFour", "") )
                             #if( $passwordRequirementOne && $passwordRequirementOne.trim() != "" ||
-                            $passwordRequirementTwo && $passwordRequirementTwo.trim() != "" ||
-                            $passwordRequirementThree && $passwordRequirementThree.trim() != "" ||
-                            $passwordRequirementFour && $passwordRequirementFour.trim() != "")
-                            #set( $isShowPasswordRequirements = true )
+                                $passwordRequirementTwo && $passwordRequirementTwo.trim() != "" ||
+                                $passwordRequirementThree && $passwordRequirementThree.trim() != "" ||
+                                $passwordRequirementFour && $passwordRequirementFour.trim() != "")
+                                #set( $isShowPasswordRequirements = true )
                             #else
-                            #set( $isShowPasswordRequirements = false )
+                                #set( $isShowPasswordRequirements = false )
                             #end
                             
-			    #if( true )
+			    
                             <div class="ping-input-container">
                                 <div class="place-top type-requirements requirements tooltip-text"
                                     id="password-requirements">
@@ -298,7 +298,6 @@
                                     </div>
                                 </div>
                             </div>
-                            #end
 
                             <div>
                                 <div class="ping-input-label">
@@ -316,7 +315,6 @@
                                     #end
                                 </div>
                             </div>
-                            #end
 
                             #if($showMyDeviceCheckbox)
                             <label class="my-computer">
