@@ -1,0 +1,30 @@
+.ess-logo img {   
+    max-height: 100px;
+    width: auto; 
+}
+
+.ping-buttons {
+    margin: 0px;
+}
+
+.content-columns .column-title {
+    padding-bottom: 20px;    
+}
+
+.content-columns .ping-buttons .ping-button {
+    margin: 0px;
+    margin-right: 0px;
+}
+
+body.columns-layout .ping-signin .ping-body-container {
+    padding: 20px 50px 30px 50px;
+}
+
+#oauth-info {
+    display: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: aliceblue;
+    color: #327732;
+    border: 1px solid;
+}
