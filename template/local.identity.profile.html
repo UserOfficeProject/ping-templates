@@ -334,7 +334,7 @@ is not recommended as it may interfere with expected server behavior.
                 <!-- </div> -->
                 <!-- end section 1 -->
 
-                <!-- #if($socialConnections.size() > 0)
+                #if($socialConnections.size() > 0)
                     <div class="content-columns columns-2">
                         <div class="content-column no-border">
                             <div class="section">
@@ -390,10 +390,10 @@ is not recommended as it may interfere with expected server behavior.
                                 </div>
                             </div>
                         </div>
-                #end-->
+                #end
                 <!-- end social connections section -->
 
-                <!--<div class="content-column">
+                <div class="content-column">
                     <div class="section">
                         <div class="section-title">
                             $templateMessages.getMessage($messageKeyPrefix, "accountSettingsTitle")
@@ -512,11 +512,11 @@ is not recommended as it may interfere with expected server behavior.
                                         </div>
                                     </div>
                                 </span>
-                        </div>-->
+                        </div>
                         <!-- your-account-container -->
                         #end
 
-                        <!--#if(!$hasLocalIdentity)
+                        #if(!$hasLocalIdentity)
                         <div class="your-account-container">
                             <input type="hidden" name="$setpass" value=""/>
                             ##Pop up the tooltip if there is an error message to show.
@@ -623,7 +623,7 @@ is not recommended as it may interfere with expected server behavior.
                                     </div>
                                 </span>
                         </div>
-                        #end-->
+                        #end
 
                         <!--#if($displayDelete)
                         <div class="your-account-container">

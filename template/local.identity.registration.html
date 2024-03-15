@@ -246,7 +246,7 @@
                                 #end
                             </div>
 
-                            #if($isLocalRegistration)
+                            #if(true)
                             #set( $passwordRequirementOne = $templateMessages.getMessageWithDefault($messageKeyPrefix,
                             "passwordRequirementOne", "") )
                             #set( $passwordRequirementTwo = $templateMessages.getMessageWithDefault($messageKeyPrefix,
@@ -263,8 +263,8 @@
                             #else
                             #set( $isShowPasswordRequirements = false )
                             #end
-
-                            #if( $isShowPasswordRequirements )
+                            
+			    #if( true )
                             <div class="ping-input-container">
                                 <div class="place-top type-requirements requirements tooltip-text"
                                     id="password-requirements">
