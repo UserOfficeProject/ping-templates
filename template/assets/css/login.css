@@ -28,3 +28,8 @@ body.columns-layout .ping-signin .ping-body-container {
     color: #327732;
     border: 1px solid;
 }
+
+.ping-signin .ping-pass-change .password-change,
+.ping-signin .ping-pass-change .divider {
+  display: inline-block;
+}
