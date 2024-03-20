@@ -33,3 +33,7 @@ body.columns-layout .ping-signin .ping-body-container {
 .ping-signin .ping-pass-change .divider {
   display: inline-block;
 }
+
+body .button-container .social-media {
+    width: 100%;
+}
