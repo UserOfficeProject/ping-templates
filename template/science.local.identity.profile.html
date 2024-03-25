@@ -391,20 +391,6 @@ is not recommended as it may interfere with expected server behavior.
                                                     <input id="currentPassword" class="pass-required" type="password" name="$currentPass" autocomplete="off" onKeyUp="return postChangePassOnReturn(event)" />
                                                 </div>
 
-                                                #set( $passwordRequirementOne = $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementOne", "") )
-                                                #set( $passwordRequirementTwo =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementTwo", "") )
-                                                #set( $passwordRequirementThree =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementThree", "") )
-                                                #set( $passwordRequirementFour =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementFour", "") )
-                                                #if( $passwordRequirementOne && $passwordRequirementOne.trim() != "" ||
-                                                        $passwordRequirementTwo && $passwordRequirementTwo.trim() != "" ||
-                                                        $passwordRequirementThree && $passwordRequirementThree.trim() != "" ||
-                                                        $passwordRequirementFour && $passwordRequirementFour.trim() != "")
-                                                    #set( $isShowPasswordRequirements = true )
-                                                #else
-                                                    #set( $isShowPasswordRequirements = false )
-                                                #end
-
-                                                #if( $isShowPasswordRequirements )
                                                 <div class="ping-input-container">
                                                     <div class="place-top type-requirements requirements tooltip-text" id="password-requirements">
                                                         <div class="title" onclick="showHideRequirements();">
@@ -414,30 +400,21 @@ is not recommended as it may interfere with expected server behavior.
                                                             <div class="requirements-contain">
                                                                 $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementsContain")
                                                             </div>
-                                                            #if( $passwordRequirementOne && $passwordRequirementOne.trim() != "" )
                                                             <div>
-                                                                $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementOne")
+                                                                Minimum 12 Characters
                                                             </div>
-                                                            #end
-                                                            #if( $passwordRequirementTwo && $passwordRequirementTwo.trim() != "" )
                                                             <div>
-                                                                $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementTwo")
+                                                                At least One Lower Case
                                                             </div>
-                                                            #end
-                                                            #if( $passwordRequirementThree && $passwordRequirementThree.trim() != "" )
                                                             <div>
-                                                                $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementThree")
+                                                                At least One Upper Case
                                                             </div>
-                                                            #end
-                                                            #if( $passwordRequirementFour && $passwordRequirementFour.trim() != "" )
                                                             <div>
-                                                                $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementFour")
+                                                                At least One Special Character (~\!@\#$%^&*_-+\=`|(){}[]\:;"'<>,.?/)
                                                             </div>
-                                                            #end
                                                         </div>
                                                     </div>
                                                 </div>
-                                                #end
 
                                                 <div class="ping-input-label">
                                                     $templateMessages.getMessage($messageKeyPrefix, "newPasswordTitle")
@@ -501,20 +478,6 @@ is not recommended as it may interfere with expected server behavior.
                                                     </div>
                                                 </span>
 
-                                                #set( $passwordRequirementOne = $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementOne", "") )
-                                                #set( $passwordRequirementTwo =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementTwo", "") )
-                                                #set( $passwordRequirementThree =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementThree", "") )
-                                                #set( $passwordRequirementFour =  $templateMessages.getMessageWithDefault($messageKeyPrefix, "passwordRequirementFour", "") )
-                                                #if( $passwordRequirementOne && $passwordRequirementOne.trim() != "" ||
-                                                        $passwordRequirementTwo && $passwordRequirementTwo.trim() != "" ||
-                                                        $passwordRequirementThree && $passwordRequirementThree.trim() != "" ||
-                                                        $passwordRequirementFour && $passwordRequirementFour.trim() != "")
-                                                    #set( $isShowPasswordRequirements = true )
-                                                #else
-                                                    #set( $isShowPasswordRequirements = false )
-                                                #end
-
-                                                #if( $isShowPasswordRequirements )
                                                 <div class="ping-input-container">
                                                     <div class="place-top no-border type-requirements requirements tooltip-text" id="password-requirements">
                                                         <div class="title" onclick="showHideRequirements();">
@@ -524,30 +487,21 @@ is not recommended as it may interfere with expected server behavior.
                                                             <div class="requirements-contain">
                                                                 $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementsContain")
                                                             </div>
-                                                            #if( $passwordRequirementOne && $passwordRequirementOne.trim() != "" )
                                                             <div>
-                                                                $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementOne")
+                                                                Minimum 12 Characters
                                                             </div>
-                                                            #end
-                                                            #if( $passwordRequirementTwo && $passwordRequirementTwo.trim() != "" )
                                                             <div>
-                                                                $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementTwo")
+                                                                At least One Lower Case
                                                             </div>
-                                                            #end
-                                                            #if( $passwordRequirementThree && $passwordRequirementThree.trim() != "" )
                                                             <div>
-                                                                $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementThree")
+                                                                At least One Upper Case
                                                             </div>
-                                                            #end
-                                                            #if( $passwordRequirementFour && $passwordRequirementFour.trim() != "" )
                                                             <div>
-                                                                $templateMessages.getMessage($messageKeyPrefix, "passwordRequirementFour")
+                                                                At least One Special Character (~\!@\#$%^&*_-+\=`|(){}[]\:;"'<>,.?/)
                                                             </div>
-                                                            #end
                                                         </div>
                                                     </div>
                                                 </div>
-                                                #end
 
                                                 <div class="ping-input-label">
                                                     $templateMessages.getMessage($messageKeyPrefix, "newPasswordTitle")
