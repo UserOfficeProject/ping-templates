@@ -40,3 +40,17 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.ess-mail-is-not-allowed {
+    position: relative;
+}
+
+.ess-mail-is-not-allowed::after {
+    content: "@ess.eu address is not allowed";
+    position: absolute;
+    text-transform: none;
+    top: 100%;
+    right: 0;
+    margin-top: 5px;
+    color: rgb(249, 111, 111);
+}

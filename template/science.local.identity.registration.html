@@ -202,7 +202,7 @@
                                 <div class="ping-input-container $required" id="container-$escapedFieldId">
                                     <input class="$required $validateRequired" id="$escapedFieldId"
                                         autocomplete="user-email" type="email" name="$escapedFieldId" value="$fieldValue"
-                                        size="36" onkeyup="return postOnReturn(event)" $fieldDisabled />
+                                        size="36" onkeyup="return !isEmailFieldMissing(this) && postOnReturn(event)" $fieldDisabled />
                                 </div>
 
                                 #elseif( $field.getName() == "Phone" )
@@ -509,6 +509,15 @@
         }
 
         function isEmailFieldMissing(field) {
+            // ess.eu mail is not allowed
+            if (field.value.includes("@ess.eu")) {
+                document.querySelector("#container-mail").classList.add("ess-mail-is-not-allowed");
+                showErrorDisplay(field);
+                return true;
+            } else {
+                document.querySelector("#container-mail").classList.remove("ess-mail-is-not-allowed");
+            }
+
             // Regular expression to match a valid email format
             var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
         
