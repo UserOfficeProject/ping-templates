@@ -1,4 +1,5 @@
 let inputCountry;
+let inputCountryContainer;
 let inputAffiliation;
 let inputAffiliationContainer;
 let inputAffiliationId;
@@ -9,6 +10,7 @@ let searchInput;
 
 document.addEventListener("DOMContentLoaded", function () {
     inputCountry = document.querySelector('select[name="affiliationCountry"]');
+    inputCountryContainer = document.querySelector('#container-affiliationCountry');
     inputAffiliation = document.querySelector('input[name="affiliation"]');
     inputAffiliationContainer = document.querySelector('#container-affiliation');
     inputRorIdContainer = document.querySelector('#container-rorID');
@@ -17,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // For the Affiliation field
     searchInput = document.querySelector('input[name="affiliation"]');
-    searchInput.addEventListener("keyup", debounce(searchDropdown, 500));
+    searchInput.addEventListener("keyup", debounce(searchDropdown, 300));
     searchInput.addEventListener("focus", handleSearchInputFocus)
     
     //Add searchResults after searchInput
@@ -49,9 +51,10 @@ function createListItem(text, parent) {
 
 function handleItemClick(item) {
     inputAffiliation.value = item.name;
-    inputCountry.value = item.country.country_name
-    inputAffiliationId.value = item.id
-    inputAffiliationContainer.classList.remove("unidentified-affilitation")
+    inputCountry.value = item.country.country_name;
+    inputCountryContainer.classList.remove("required");
+    inputAffiliationId.value = item.id;
+    inputAffiliationContainer.classList.remove("unidentified-affilitation");
     searchResults.innerHTML = "";
 }
 
@@ -66,7 +69,7 @@ function searchDropdown() {
     if (query.length >= 3) {
         // Construct the API URL with the query and country code
         var apiUrl =
-            "https://ror.useroffice.ess.eu/organizations?query=" +
+            "https://api.ror.org/organizations?query=" +
             encodeURIComponent(query);
         var setResults = function (elem) {
             inputAffiliation.value = elem.srcElement.innerHTML;
