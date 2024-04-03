@@ -668,10 +668,23 @@
         const messages = document.querySelectorAll('.page-messages .message');
 
         // hide messages after 5 seconds.
-        for (i = 0; i < messages.length; i++) {
-            setInterval(function () {
-                messages[0].style.display = 'none';
+        for (let i = 0; i < messages.length; i++) {
+            setTimeout(function () {
+                messages[i].style.display = 'none';
             }, 5000);
+        }
+        
+        // If the message is 'One of the values specified is not unique.' then add a new message stating that the email already exists. 
+        // Currently, we only have one unique constraint in PING Identity, so we can check for this message.
+        for(let i = 0; i < messages.length; i++) {
+            if(messages[i].innerText.includes("One of the values specified is not unique.")) {
+                var message = document.createElement('div');
+                message.classList.add('message');
+                message.classList.add('show');
+                message.classList.add('error');
+                message.innerText = "The email address you entered is already in use. Please enter a different email address.";
+                messages[0].parentNode.insertBefore(message, messages[0]);
+            }
         }
 
         const closebuttons = document.querySelectorAll('.page-messages .message > a.close');
