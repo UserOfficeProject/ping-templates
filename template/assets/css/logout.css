@@ -1,0 +1,33 @@
+button {
+  all: unset;
+}
+.logout-button {
+  background-color: #0099c8;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Akzidenz Grotesk BQ Medium', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.825rem;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 0.5rem 0.8rem;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, color 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.logout-button:hover {
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
+  transform: translateY(-1px);
+}
+.logout-button:focus {
+  border: 1px solid transparent;
+}
