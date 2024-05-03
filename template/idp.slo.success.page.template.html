@@ -40,8 +40,7 @@ statements is not recommended as it may interfere with expected server behavior.
           <div>$templateMessages.getMessage($messageKeyPrefix, "info")</div>
         </div>
 
-        <div>
-            <button class="logout-button" onClick="loginRedirect()">Sign In Again</button>
+        <div id="buttonContainer">
           </div>
         </div>
       </div>
@@ -58,17 +57,29 @@ statements is not recommended as it may interfere with expected server behavior.
     </div>
     <!-- .ping-container -->
     <script type="text/javascript">
-      function loginRedirect() {
+      function redirectToLogin() {
         const urlParams = new URLSearchParams(window.location.search);
         const loginUrl = urlParams.get('from');
         if (loginUrl) {
-          if (!/^https?:\/\//i.test(loginUrl)) {
-            window.location.href = 'https://' + loginUrl;
-          } else {
-            window.location.href = loginUrl;
-          }
+          // Ensures the URL begins with http:// or https://
+          const validUrl = /^https?:\/\//i.test(loginUrl) ? loginUrl : 'https://' + loginUrl;
+          window.location.href = validUrl;
         }
       }
+
+      // This function adds the sign-in button to the page if needed
+      function addSignInButton() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('from')) {
+          const container = document.getElementById('buttonContainer');
+          container.innerHTML = `<button class="logout-button" onClick="redirectToLogin()">Sign In Again</button>`;
+        }
+      }
+
+      // Ensuring everything loads before running our scripts
+      window.onload = function () {
+        addSignInButton();
+      };
     </script>
   </body>
 </html>
