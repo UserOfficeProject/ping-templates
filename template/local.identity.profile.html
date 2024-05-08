@@ -36,6 +36,9 @@ is not recommended as it may interfere with expected server behavior.
     <link rel="stylesheet" type="text/css" href="assets/css/registration-help.css" />
     <script src='assets/scripts/ror.js'></script>
     <script src='assets/scripts/registration-help.js'></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@22.0.2/build/css/intlTelInput.css">
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@22.0.2/build/js/intlTelInput.min.js"></script>
 </head>
 
 <div id="privacyStatementOverlay">
@@ -291,6 +294,9 @@ is not recommended as it may interfere with expected server behavior.
                                 </div>
                                 <div class="ping-input-container $required" id="container-$escapedFieldId">
                                     <input class="$required $validateRequired" id="$escapedFieldId" type="tel" autocomplete="off" name="$escapedFieldId" value="$fieldValue" size="36" onkeyup="return postOnReturn(event)" $fieldDisabled/>
+                                </div>
+                                <div class="ping-messages" id="alert-tel" style="display: none">
+                                    <div class="ping-error"></div>
                                 </div>
 
                                 #elseif( $field.getName() == "Dropdown" )
@@ -712,6 +718,36 @@ is not recommended as it may interfere with expected server behavior.
 <!-- .ping-container -->
 
 <script type="text/javascript">
+    const telNumberErrorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+    const mobileInputField = document.querySelector("#mobile");
+    let mobileInput;
+    
+    if (mobileInputField) {
+        mobileInput = window.intlTelInput(mobileInputField, {
+            preferredCountries: ["se", "dk"],
+            strictMode: true,
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@22.0.2/build/js/utils.js",
+        });
+    }
+
+    function isValidPhoneNumber() {
+        if(mobileInput.isValidNumber()){
+            mobileInputField.value = mobileInput.getNumber(); // Update the input field with the formatted number
+
+            return true;
+        }
+        else {
+            const errorCode = mobileInput.getValidationError();
+            const msg = telNumberErrorMap[errorCode] || "Invalid number";
+            
+            document.getElementById("alert-tel").style.display = "block";
+            document.querySelector("#alert-tel > div").textContent = "Invalid telephone number: " + msg;
+
+            showErrorDisplay(mobileInputField);
+
+            return false;
+        }
+    }
 
     function showHideRequirements() {
         var tips = document.getElementById('password-requirements');
@@ -744,6 +780,10 @@ is not recommended as it may interfere with expected server behavior.
     }
 
     function postSave() {
+        if(mobileInputField && !isValidPhoneNumber()) {
+            return false;
+        }
+
         if (!requiredFieldsMissing()) {
             // run browser validation
             if(document.forms[0].checkValidity && !document.forms[0].checkValidity() && document.forms[0].reportValidity) {
@@ -915,7 +955,7 @@ is not recommended as it may interfere with expected server behavior.
 
     function showPrivacyStatement() {
      document.getElementById("privacyStatementOverlay").style.display = "block";
-    }   theElement.style.display = "block";
+    }
 
     function hidePrivacyStatement() {
        document.getElementById("privacyStatementOverlay").style.display = "none";

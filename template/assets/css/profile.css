@@ -1,0 +1,30 @@
+/* Fix International Telephone Input vs Ping Identity style conflict */
+body .iti .iti__dropdown-content .iti__country-list .iti__country > span {
+    all: unset;
+}
+
+body .iti .iti__dropdown-content .iti__country-list > li {
+    display: flex;
+    margin: 0;
+}
+
+body .iti .iti__dropdown-content .iti__country-list {
+    margin: 0;
+}
+
+body .iti {
+    margin: 7px 0 0 0;
+    display: block;
+}
+
+body .ping-signin .ping-body-container #container-mobile.required.error:before {
+    all: unset;
+}
+
+body .ping-signin .ping-body-container #mobile.required  {
+    padding-left: 50px;
+}
+
+#alert-tel {
+    margin-top: -10px;
+}
